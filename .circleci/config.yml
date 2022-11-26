@@ -50,6 +50,7 @@ jobs:
           name: API eb
           command: |
             eb init api-backend --platform node.js --region us-east-1
+            eb create --sample udagram-api-dev
             eb use udagram-api-dev
             npm run api:deploy
   # deploy step will run only after manual approval
