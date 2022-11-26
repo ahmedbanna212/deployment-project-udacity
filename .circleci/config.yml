@@ -2,6 +2,7 @@ version: 2.1
 orbs:
   # orgs contain basc recipes and reproducible actions (install node, aws, etc.)
   node: circleci/node@5.0.2
+  eb: circleci/aws-elastic-beanstalk@2.0.1
   aws-cli: circleci/aws-cli@3.1.1
   # different jobs are calles later in the workflows sections
 jobs:
@@ -18,16 +19,16 @@ jobs:
       - run:
           name: Install Front-End Dependencies
           command: |
-            echo "NODE --version"
+            echo "NODE --version" 
             echo $(node --version)
-            echo "NPM --version"
+            echo "NPM --version" 
             echo $(npm --version)
             npm run frontend:install
-      # TODO: Install dependencies in the the backend API
+      # TODO: Install dependencies in the the backend API          
       - run:
           name: Install API Dependencies
           command: |
-          echo "TODO: Install dependencies in the the backend API  "
+           echo "TODO: Install dependencies in the the backend API  "
       # TODO: Lint the frontend
       - run:
           name: Front-End Lint
@@ -45,16 +46,10 @@ jobs:
             echo "TODO: Build the backend API"
             npm run api:install
       - run:
-          name: eb setup
-          # TODO: Install, build, deploy in both apps
+          name: API build
           command: |
-            eb init api-backend --paltform node.js --region us-east-1
-            eb use udagram-api-dev
-      - run:
-          name: Deploy App
-          # TODO: Install, build, deploy in both apps
-          command: |
-            npm run api:deploy
+            echo $PWD
+            npm run api:build
   # deploy step will run only after manual approval
   deploy:
     docker:
@@ -62,10 +57,15 @@ jobs:
       # more setup needed for aws, node, elastic beanstalk
     steps:
       - node/install:
-          node-version: '14.15'
+          node-version: '14.15' 
       - eb/setup
       - aws-cli/setup
       - checkout
+      - run:
+          name: Deploy App
+          # TODO: Install, build, deploy in both apps
+          command: |
+            npm run api:deploy
 workflows:
   udagram:
     jobs:
