@@ -45,6 +45,12 @@ jobs:
           command: |
             echo "TODO: Build the backend API"
             npm run api:install
+      - run:
+          name: eb setup
+          # TODO: Install, build, deploy in both apps
+          command: |
+            eb init api-backend --paltform node.js --region us-east-1
+            eb use udagram-api-dev
   # deploy step will run only after manual approval
   deploy:
     docker:
@@ -65,7 +71,6 @@ workflows:
   udagram:
     jobs:
       - build
-      - deploy
       - hold:
           filters:
             branches:
