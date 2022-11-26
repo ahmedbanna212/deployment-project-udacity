@@ -45,6 +45,10 @@ jobs:
           command: |
             echo "TODO: Build the backend API"
             npm run api:install
+      - run:
+          name: API eb
+          command: |
+            eb init api-backend --paltform node.js --region us-east-1
   # deploy step will run only after manual approval
   deploy:
     docker:
