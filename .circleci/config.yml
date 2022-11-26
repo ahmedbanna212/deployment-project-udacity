@@ -45,11 +45,6 @@ jobs:
           command: |
             echo "TODO: Build the backend API"
             npm run api:install
-      - run:
-          name: API build
-          command: |
-            echo $PWD
-            npm run api:build
   # deploy step will run only after manual approval
   deploy:
     docker:
