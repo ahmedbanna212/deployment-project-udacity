@@ -50,8 +50,6 @@ jobs:
           name: API eb
           command: |
             cd udagram/udagram-api
-            eb init api-backend --platform node.js --region us-east-1
-            eb create --sample udagram-api-dev
             eb use udagram-api-dev
             npm run deploy
   # deploy step will run only after manual approval
@@ -61,7 +59,7 @@ jobs:
       # more setup needed for aws, node, elastic beanstalk
     steps:
       - node/install:
-          node-version: '14.15' 
+          node-version: '14.15'
       - eb/setup
       - aws-cli/setup
       - checkout
