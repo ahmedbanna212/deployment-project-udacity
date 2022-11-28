@@ -49,6 +49,7 @@ jobs:
       - run:
           name: API eb
           command: |
+            cd udagram/udagram-api
             eb init api-backend --platform node.js --region us-east-1
             eb create --sample udagram-api-dev
             eb use udagram-api-dev
