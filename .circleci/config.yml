@@ -90,6 +90,7 @@ workflows:
           requires:
             - build
       - deploy:
+          context:
+            - context
           requires:
             - hold
-         
