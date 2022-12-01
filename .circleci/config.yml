@@ -54,12 +54,6 @@ jobs:
       - aws-cli/setup
       - checkout
       - run:
-          name: env vartiables
-          command: |
-            cd udagram/udagram-api
-            eb use udagram-api-dev
-            eb setenv POSTGRES_USERNAME= $POSTGRES_USERNAME
-      - run:
           name: API eb
           command: |
             cd udagram/udagram-api
@@ -69,7 +63,7 @@ jobs:
           command: |
             cd udagram/udagram-api
             eb use udagram-api-dev
-            eb setenv POSTGRES_USERNAME= ($POSTGRES_USERNAME) POSTGRES_PASSWORD= ($POSTGRES_PASSWORD) POSTGRES_DB= ($POSTGRES_DB) POSTGRES_HOST= ($POSTGRES_HOST) POSTGRES_PORT= ($POSTGRES_PORT) JWT_SECRET= ($JWT_SECRET) PORT= ($PORT) URL= ($URL)
+            eb setenv POSTGRES_USERNAME=postgres  POSTGRES_PASSWORD=postgres POSTGRES_DB=test POSTGRES_HOST= "database-1.cpmrjl0k9vus.us-east-1.rds.amazonaws.com" POSTGRES_PORT=5432  JWT_SECRET=SECRET PORT= 3000 URL="http://localhost" AWS_REGION=us-east-1 AWS_PROFILE=default AWS_BUCKET=arn:aws:s3:::frontendproject
       - run:
           name: frontend deploy
           command: |
