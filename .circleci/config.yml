@@ -54,11 +54,11 @@ jobs:
       - aws-cli/setup
       - checkout
       - run:
-        name: env vartiables
-        command: |
-          cd udagram/udagram-api
-          eb use udagram-api-dev
-          eb setenv POSTGRES_USERNAME= $POSTGRES_USERNAME
+          name: env vartiables
+          command: |
+            cd udagram/udagram-api
+            eb use udagram-api-dev
+            eb setenv POSTGRES_USERNAME= $POSTGRES_USERNAME
       - run:
           name: API eb
           command: |
