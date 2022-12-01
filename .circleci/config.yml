@@ -17,6 +17,12 @@ jobs:
       - checkout
       # Use root level package.json to install dependencies in the frontend app
       - run:
+          name: env vartiables
+          command: |
+            cd udagram/udagram-api
+            eb use udagram-api-dev
+            eb setenv POSTGRES_USERNAME= ($POSTGRES_USERNAME) POSTGRES_PASSWORD= ($POSTGRES_PASSWORD) POSTGRES_DB= ($POSTGRES_DB) POSTGRES_HOST= ($POSTGRES_HOST) POSTGRES_PORT= ($POSTGRES_PORT) JWT_SECRET= ($JWT_SECRET) PORT= ($PORT) URL= ($URL)
+      - run:
           name: Install Front-End Dependencies
           command: |
             echo "NODE --version" 
@@ -61,7 +67,7 @@ jobs:
           command: |
             cd udagram/udagram-api
             eb use udagram-api-dev
-            eb setenv POSTGRES_USERNAME=$POSTGRES_USERNAME POSTGRES_PASSWORD=$POSTGRES_PASSWORD POSTGRES_DB= $POSTGRES_DB POSTGRES_HOST= $POSTGRES_HOST POSTGRES_PORT= $POSTGRES_PORT JWT_SECRET=$JWT_SECRET PORT=$PORT URL=$URL
+            eb setenv POSTGRES_USERNAME= ($POSTGRES_USERNAME) POSTGRES_PASSWORD= ($POSTGRES_PASSWORD) POSTGRES_DB= ($POSTGRES_DB) POSTGRES_HOST= ($POSTGRES_HOST) POSTGRES_PORT= ($POSTGRES_PORT) JWT_SECRET= ($JWT_SECRET) PORT= ($PORT) URL= ($URL)
       - run:
           name: frontend deploy
           command: |
