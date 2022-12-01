@@ -86,9 +86,9 @@ workflows:
               only:
                 - main
           type: approval
+          context: context
           requires:
             - build
-        context: context
       - deploy:
           requires:
             - hold
