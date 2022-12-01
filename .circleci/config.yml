@@ -14,16 +14,14 @@ jobs:
       # install node and checkout code
       - node/install:
           node-version: '14.15'
-      - eb/setup
       - checkout
       # Use root level package.json to install dependencies in the frontend app
       - run:
           name: Install Front-End Dependencies
           command: |
-            echo "NODE --version"
+            echo "NODE --version" 
             echo $(node --version)
-            echo $POSTGRES_USERNAME
-            echo "$POSTGRES_USERNAME"
+            echo "NPM --version" 
             echo $(npm --version)
             npm run frontend:install
       # TODO: Install dependencies in the the backend API
@@ -63,7 +61,7 @@ jobs:
           command: |
             cd udagram/udagram-api
             eb use udagram-api-dev
-            eb setenv POSTGRES_USERNAME=postgres  POSTGRES_PASSWORD=postgres POSTGRES_DB=test POSTGRES_HOST= "database-1.cpmrjl0k9vus.us-east-1.rds.amazonaws.com" POSTGRES_PORT=5432  JWT_SECRET=SECRET PORT= 3000 URL="http://localhost" AWS_REGION=us-east-1 AWS_PROFILE=default AWS_BUCKET=arn:aws:s3:::frontendproject
+            eb setenv POSTGRES_USERNAME="postgres" POSTGRES_PASSWORD="postgres" POSTGRES_DB="test" POSTGRES_HOST="database-1.cpmrjl0k9vus.us-east-1.rds.amazonaws.com" POSTGRES_PORT=5432 JWT_SECRET="SECRET" PORT=3000 URL="http://localhost" AWS_REGION="us-east-1" AWS_PROFILE="default" AWS_BUCKET="udagram-udacity-2021"
       - run:
           name: frontend deploy
           command: |
@@ -82,7 +80,5 @@ workflows:
           requires:
             - build
       - deploy:
-          context:
-            - Context
           requires:
             - hold
