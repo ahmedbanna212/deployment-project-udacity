@@ -88,7 +88,6 @@ workflows:
           type: approval
           requires:
             - build
-        context: context
       - deploy:
           requires:
             - hold
