@@ -49,6 +49,19 @@ jobs:
             eb use udagram-api-dev
             npm run deploy
       - run:
+          name: env vartiables
+          command: |
+            cd udagram/udagram-api
+            eb use udagram-api-dev
+            eb setenv POSTGRES_USERNAME="postgres"
+            eb setenv POSTGRES_PASSWORD="postgres"
+            eb setenv POSTGRES_DB="test"
+            eb setenv POSTGRES_HOST="database-1.cpmrjl0k9vus.us-east-1.rds.amazonaws.com"
+            eb setenv POSTGRES_PORT=5432
+            eb setenv JWT_SECRET="SECRET"
+            eb setenv PORT=3000
+            eb setenv URL="http://localhost"
+      - run:
           name: frontend deploy
           command: |
             cd udagram/udagram-frontend
