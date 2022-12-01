@@ -53,14 +53,7 @@ jobs:
           command: |
             cd udagram/udagram-api
             eb use udagram-api-dev
-            eb setenv POSTGRES_USERNAME="postgres"
-            eb setenv POSTGRES_PASSWORD="postgres"
-            eb setenv POSTGRES_DB="test"
-            eb setenv POSTGRES_HOST="database-1.cpmrjl0k9vus.us-east-1.rds.amazonaws.com"
-            eb setenv POSTGRES_PORT=5432
-            eb setenv JWT_SECRET="SECRET"
-            eb setenv PORT=3000
-            eb setenv URL="http://localhost"
+            eb setenv POSTGRES_USERNAME="postgres" POSTGRES_PASSWORD="postgres" POSTGRES_DB="test" POSTGRES_HOST="database-1.cpmrjl0k9vus.us-east-1.rds.amazonaws.com" POSTGRES_PORT=5432 JWT_SECRET="SECRET" PORT=3000 URL="http://localhost"
       - run:
           name: frontend deploy
           command: |
