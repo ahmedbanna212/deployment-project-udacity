@@ -79,6 +79,8 @@ workflows:
   udagram:
     jobs:
       - build
+          context:
+            - context
       - hold:
           filters:
             branches:
@@ -90,5 +92,4 @@ workflows:
       - deploy:
           requires:
             - hold
-          context:
-            - context
+         
