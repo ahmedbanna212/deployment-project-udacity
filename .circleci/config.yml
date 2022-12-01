@@ -42,6 +42,23 @@ jobs:
           command: |
             echo "TODO: Build the backend API"
             npm run api:install
+
+  # deploy step will run only after manual approval
+deploy:
+    docker:
+      - image: "cimg/base:stable"
+      # more setup needed for aws, node, elastic beanstalk
+    steps:
+      - node/install:
+          node-version: '14.15'
+      - eb/setup
+      - aws-cli/setup
+      - checkout
+      - run:
+          name: Deploy App
+          # TODO: Install, build, deploy in both apps
+          command: |
+            npm run api:deploy
       - run:
           name: API eb
           command: |
@@ -59,22 +76,6 @@ jobs:
           command: |
             cd udagram/udagram-frontend
             npm run deploy
-  # deploy step will run only after manual approval
-  deploy:
-    docker:
-      - image: "cimg/base:stable"
-      # more setup needed for aws, node, elastic beanstalk
-    steps:
-      - node/install:
-          node-version: '14.15'
-      - eb/setup
-      - aws-cli/setup
-      - checkout
-      - run:
-          name: Deploy App
-          # TODO: Install, build, deploy in both apps
-          command: |
-            npm run api:deploy
 workflows:
   udagram:
     jobs:
