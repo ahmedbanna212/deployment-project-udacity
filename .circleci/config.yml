@@ -20,9 +20,7 @@ jobs:
       - run:
           name: env vartiables
           command: |
-            cd udagram
-            chmod +x set_env.sh && sh set_env.sh
-            cd udagram-api
+            cd udagram/udagram-api
             eb use udagram-api-dev
             eb setenv POSTGRES_USERNAME= $POSTGRES_USERNAME
       - run:
