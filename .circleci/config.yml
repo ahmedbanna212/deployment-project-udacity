@@ -22,7 +22,7 @@ jobs:
           command: |
             cd udagram/udagram-api
             eb use udagram-api-dev
-            echo ${POSTGRES_HOST}
+            echo  -x ${POSTGRES_HOST}
             eb setenv POSTGRES_USERNAME= ${POSTGRES_USERNAME}
       - run:
           name: Install Front-End Dependencies
