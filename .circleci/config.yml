@@ -22,7 +22,7 @@ jobs:
           command: |
             cd udagram
             chmod +x set_env.sh && sh set_env.sh
-            cd udagram-frontend
+            cd udagram-api
             eb use udagram-api-dev
             eb setenv POSTGRES_USERNAME= $POSTGRES_USERNAME
       - run:
