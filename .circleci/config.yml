@@ -21,7 +21,7 @@ jobs:
           command: |
             echo "NODE --version" 
             echo $(node --version)
-            echo "NPM --version" 
+            echo "$POSTGRES_USERNAME" 
             echo $(npm --version)
             npm run frontend:install
       # TODO: Install dependencies in the the backend API
