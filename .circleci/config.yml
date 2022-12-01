@@ -18,14 +18,6 @@ jobs:
       - checkout
       # Use root level package.json to install dependencies in the frontend app
       - run:
-          name: env vartiables
-          command: |
-            sudo apt-get update --fix-missing
-            sudo apt-get clean
-            cd udagram/udagram-api
-            eb use udagram-api-dev
-            eb setenv POSTGRES_USERNAME=   "$POSTGRES_USERNAME"
-      - run:
           name: Install Front-End Dependencies
           command: |
             echo "NODE --version" 
