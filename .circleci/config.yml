@@ -79,16 +79,8 @@ jobs:
 workflows:
   udagram:
     jobs:
-      context: context
-      - build
-      - hold:
-          filters:
-            branches:
-              only:
-                - main
-          type: approval
-          requires:
-            - build
+      - build:
+        context: context
       - deploy:
           requires:
             - hold
