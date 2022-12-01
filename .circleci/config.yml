@@ -20,14 +20,15 @@ jobs:
       - run:
           name: env vartiables
           command: |
-            cd udagram/udagram-api
+            cd udagram
+            chmod +x set_env.sh && set_env.sh
+            cd udagram-frontend
             eb use udagram-api-dev
-            export  test=$POSTGRES_USERNAME
-            eb setenv POSTGRES_USERNAME=test
+            eb setenv POSTGRES_USERNAME= $POSTGRES_USERNAME
       - run:
           name: Install Front-End Dependencies
           command: |
-            echo "NODE --version" 
+            echo "NODE --version"
             echo $(node --version)
             echo $POSTGRES_USERNAME
             echo "$POSTGRES_USERNAME"
