@@ -44,7 +44,7 @@ jobs:
             npm run api:install
 
   # deploy step will run only after manual approval
-deploy:
+  deploy:
     docker:
       - image: "cimg/base:stable"
       # more setup needed for aws, node, elastic beanstalk
@@ -84,7 +84,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
           type: approval
           requires:
             - build
